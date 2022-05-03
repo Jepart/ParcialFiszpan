@@ -125,7 +125,7 @@ function diaGenerator(){
         createbox.classList.add("box","shadown","status")
 
         h3 = document.createElement("h3")
-        h3.textContent = "Parcial Dia"
+        h3.textContent = "VOU FAZER"
 
         h5 = document.createElement("h5")
         h5.textContent = datereturn(true,true)
