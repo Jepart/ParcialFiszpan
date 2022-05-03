@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiszpan Dashboard</title>
+    <link rel="stylesheet" href="style/css.css">
+    <style>
+
+    </style>
+</head>
+
+
+<body>
+    <div class="master">
+        <div class="sidebar shadown">
+            <ul>
+                <li>
+                    <label for="expand" class="title">
+                        <img src="img/fiszpanlight.png" alt="">
+                </label>
+                </li>
+                <a onclick="diaGenerator()">
+                    <li class="menuDia">
+                        <img src="img/icon-light/now.svg" class="display-light" alt="">
+                        <img src="img/icon-dark/now.svg" class="display-dark" alt="">
+                        <span>Parcial do dia</span>
+                    </li>
+                </a>
+                <a href="#">
+                    <li>
+                        <img src="img/icon-light/meta.svg" class="display-light" alt="">
+                        <img src="img/icon-dark/meta.svg" class="display-dark" alt="">
+                        <span>Meta Abril</span>
+                    </li>
+                </a>
+                <a href="#">
+                    <li>
+                        <img src="img/icon-light/day.svg" class="display-light" alt="">
+                        <img src="img/icon-dark/day.svg" class="display-dark" alt="">
+                        <span>Parcial por Data</span>
+                    </li>
+                </a>
+                <a href="#">
+                    <li>
+                        <img src="img/icon-light/month.svg" class="display-light" alt="">
+                        <img src="img/icon-dark/month.svg" class="display-dark" alt="">
+                        <span>Parcial de Abril</span>
+                    </li>
+                </a>
+                <a href="#">
+                    <li>
+                        <img src="img/icon-light/comparar.svg" class="display-light" alt="">
+                        <img src="img/icon-dark/comparar.svg" class="display-dark" alt="">
+                        <span>Comparativo</span>
+                    </li>
+                </a>
+                <a href="#">
+                    <li>
+                        <img src="img/icon-light/2019.svg" class="display-light" alt="">
+                        <img src="img/icon-dark/2019.svg" class="display-dark" alt="">
+                        <span>Comparativo 2019</span>
+                    </li>
+                </a>
+                <a href="#">
+                    <li>
+                        <img src="img/icon-light/vendas.svg" class="display-light" alt="">
+                        <img src="img/icon-dark/vendas.svg" class="display-dark" alt="">
+                        <span>Parcial Produto</span>
+                    </li>
+                </a>
+                <a>
+                    <li class="menuStatus">
+                        <img src="img/icon-light/status.svg" class="display-light" alt="">
+                        <img src="img/icon-dark/status.svg" class="display-dark" alt="">
+                        <span>Status</span>
+                    </li>
+                </a>
+                <li>
+                    <label for="modelight" class="inputcheck  shadown-internal">
+                    <input type="checkbox" id="modelight">
+                    <span class="dot shadown-internal"></span>
+                </label>
+                </li>
+                <li>
+                    <label for="expand" class="expand">
+                    <input type="checkbox" id="expand">
+                    <span class="expand-arrow">
+                        <img src="img/icon-light/arrow.svg" class="display-light" alt="">
+                        <img src="img/icon-dark/arrow.svg" class="display-dark" alt="">
+                    </span>
+                </label>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="grid">
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script/js.js"></script>
+<script src="script/menuclick.js"></script>
+
+</html>

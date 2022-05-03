@@ -1,0 +1,35 @@
+.expandMenu .expand-arrow {
+    bottom: 40px;
+}
+
+.expandMenu .master {
+    grid-template-columns: 60px auto;
+}
+
+.expandMenu .title img {
+    margin-left: -35px;
+}
+
+.expandMenu .sidebar ul a li {
+    margin-left: -7px;
+}
+
+.expandMenu .sidebar {
+    width: 60px;
+}
+
+.expandMenu .title img {
+    width: 50px;
+}
+
+.expandMenu a li span {
+    display: none;
+}
+
+.expandMenu .sidebar ul a li {
+    width: 20px;
+}
+
+.expandMenu .sidebar ul a li img {
+    margin: 0;
+}

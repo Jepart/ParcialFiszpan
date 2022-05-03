@@ -1,0 +1,45 @@
+    .darkmode {
+        background: #1d1b25;
+    }
+    
+    .darkmode .inputcheck {
+        background: #25293f;
+        border: solid 1px #2d3149;
+    }
+    
+    .darkmode .inputcheck .dot {
+        background: #232840;
+    }
+    
+    .darkmode .sidebar {
+        background: #333854;
+    }
+    
+    .darkmode .sidebar ul a li {
+        color: #e5ebff;
+    }
+    
+    .darkmode .sidebar ul a li:hover {
+        background: #242942;
+        color: #e5ebff;
+        font-weight: 700;
+    }
+    
+    .darkmode .menuactive {
+        background: #242942;
+        color: #e5ebff;
+        font-weight: 700;
+    }
+    
+    .darkmode .display-light {
+        display: none;
+    }
+    
+    .darkmode .display-dark {
+        display: block;
+    }
+    
+    .darkmode .box {
+        background: #26273b;
+        color: cornsilk;
+    }

@@ -1,0 +1,49 @@
+    @media only screen and (max-width: 640px) {
+        .sidebar {
+            position: fixed;
+            height: 100%;
+            margin: 0;
+            border-bottom-right-radius: 0;
+            z-index: 999;
+        }
+        .expandMenu .container {
+            margin-top: 50px;
+            ;
+        }
+        .expandMenu .sidebar {
+            height: 50px;
+            border-radius: 0 10px 30px 10px;
+            position: fixed;
+            z-index: 999;
+        }
+        .sidebar ul a li {
+            display: block;
+        }
+        .sidebar ul li .expand {
+            display: block;
+        }
+        .sidebar ul li .inputcheck {
+            display: block;
+        }
+        .expandMenu .sidebar ul a li {
+            display: none;
+        }
+        .expandMenu .sidebar ul li .expand {
+            display: none;
+        }
+        .expandMenu .sidebar ul li .inputcheck {
+            display: none;
+        }
+        .expandMenu .sidebar ul li {
+            margin: 0px;
+        }
+        .master {
+            display: flex;
+        }
+        .expandMenu .master {
+            display: flex;
+        }
+        .showmobile{
+            display: none;
+        }
+    }
