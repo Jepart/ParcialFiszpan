@@ -77,19 +77,24 @@ function datereturn(dat,hora){
     let data = new Date()
     let text = ""
     if (dat){
-        text += data.getDate()
+        if(data.getDate()<10){dia =  "0"+data.getDate()}else{dia = data.getDate()}
+        if((data.getMonth()+1)<10){mes =  "0"+(data.getMonth()+1)}else{mes = (data.getMonth()+1)}
+        text += dia
         text += "/"
-        text += data.getMonth()+1
+        text += mes
         text += "/"
         text += data.getFullYear()
     }
     if (dat & hora){ text += " "}
     if (hora){
-        text += data.getHours()
+        if(data.getHours()<10){hour =  "0"+data.getHours()}else{hour = data.getHours()}
+        if(data.getMinutes()<10){min =  "0"+data.getMinutes()}else{min = data.getMinutes()}
+        if(data.getSeconds()<10){sec =  "0"+data.getSeconds()}else{sec = data.getSeconds()}
+        text += hour
         text += ":"
-        text += data.getMinutes()
+        text += min
         text += ":"
-        text += data.getSeconds()
+        text += sec
     }
     return text
 }
@@ -100,10 +105,9 @@ function checkPeriodo(check,time){
     UTNOW = Math.floor(UTNOW/(1000*60))
     return UTNOW
 }
-function diaGenerator(){
-    localStorage.setItem("refreshMod", "status")
-    const refresh = 150
-
+async function diaGenerator(){
+    const refresh = 30
+    
     let menuactive = document.querySelector(".menuactive")
     if (menuactive){
         menuactive.classList.remove("menuactive")
@@ -112,49 +116,115 @@ function diaGenerator(){
     menuStatus.classList.add("menuactive")
     let grid = document.querySelector(".grid")
     let box = grid.querySelector(".box")
-    
-    const link = "https://api.fiszpan.com.br/parcial/dia"
-    if (box){
+    let dia = document.querySelector(".dia")
+
+    const link = "https://api.fiszpan.com.br/parcial/teste/"
+    if (box && !dia){
         box.remove()
-        diaGenerator()
-        localStorage.setItem("refreshinfo",false)
+        clear = async function(){
+            box.remove()
+            create = await diaGenerator()
+        }
         clearInterval(interval)
+        
     }else{
         localStorage.setItem("refreshTime",true)
-        createbox = document.createElement("div")
-        createbox.classList.add("box","shadown","status")
+        if (!dia){
+            createbox = document.createElement("div")
+            createbox.classList.add("box","shadown","dia")
 
-        h3 = document.createElement("h3")
-        h3.textContent = "VOU FAZER"
+            h3 = document.createElement("h3")
+            h3.textContent = "Parcial Dia"
 
-        h5 = document.createElement("h5")
-        h5.textContent = datereturn(true,true)
-        
-        divloading = document.createElement("div")
-        divloading.classList.add("divloading")
-        loading = document.createElement("div")
-        loading.classList.add("loading")
-        
-        table = document.createElement("table")
-        
-        grid.appendChild(createbox)
-        createbox.appendChild(h3)
-        createbox.appendChild(h5)
-        createbox.appendChild(divloading)
-        divloading.appendChild(loading)
-        createbox.appendChild(table)
-    
+            h5 = document.createElement("h5")
+            h5.textContent = "Ultima Atualização " + datereturn(true,true)
+            
+            divloading = document.createElement("div")
+            divloading.classList.add("divloading")
+            
+            loading = document.createElement("div")
+            loading.classList.add("loading")
+            
+            
+            grid.appendChild(createbox)
+            createbox.appendChild(h3)
+            createbox.appendChild(h5)
+            createbox.appendChild(divloading)
+            divloading.appendChild(loading)
+        }else{
+            document.querySelector("h5").textContent = "Ultima Atualização " + datereturn(true,true)
+        }
         fetch(link).then(result => result.json())
         .then((result) => {
-            console.log(result)
-            loading.remove()
-            table.classList.remove("temp")
-            interval  = setInterval(statusGenerator,refresh*1000)
-        })
+            
+                for (i=0;i<result.PCL.length;i++){
+                    namefilial = result.PCL[i].FIL
+                    if (namefilial == "RIO SUL"){namefilial = "RIO_SUL"}
+                    checkfilial = document.querySelector("."+namefilial)
+                    if (!dia && !checkfilial){
+                        let filial = document.createElement("div")
+                        let percent = document.createElement("div")
+                        let progress = document.createElement("div")
+                        let progressbar_loja = document.createElement("div")
+                        let progressbar_valor = document.createElement("div")
 
-        createbox.appendChild(document.createElement("br")) 
-    }
+                        namefilial = result.PCL[i].FIL
+                        if (namefilial == "RIO SUL"){namefilial = "RIO_SUL"}
+                        filial.classList.add(namefilial)
+
+                        progressbar_loja.classList.add("progressbarloja")
+                        progressbar_loja.textContent = result.PCL[i].FIL
+                        progressbar_valor.classList.add("progressbarvalor")
+                        progressbar_valor.textContent = result.PCL[i].TTL
+                        percent.classList.add("percent")
+                        progress.classList.add("progress")
+                        progress.style.width = result.PCL[i].PRC + "%"
+                        
+                        if (i == 0){
+                            createbox.appendChild(filial)
+                        }else{
+                            before = result.PCL[(i-1)].FIL
+                            if (before == "RIO SUL"){before = "RIO_SUL"}
+                            let beforeFilial = document.querySelector("."+before)
+                            beforeFilial.parentNode.insertBefore(filial, createbox.beforeFilial)
+                        }
+                        filial.appendChild(progressbar_loja)
+                        filial.appendChild(progressbar_valor)
+                        filial.appendChild(percent)
+                        percent.appendChild(progress) 
+
+                        filial.appendChild(document.createElement("hr")) 
+                        filial.appendChild(document.createElement("br")) 
+                    }else if(checkfilial){
+                        namefilial = result.PCL[i].FIL
+                        if (namefilial == "RIO SUL"){namefilial = "RIO_SUL"}
+                        let divFilial = document.querySelector("."+namefilial)
+                        divFilial.querySelector(".progressbarvalor").textContent = result.PCL[i].TTL
+                        divFilial.querySelector(".progress").style.width = result.PCL[i].PRC+ "%"
+                    }
+                }
+                if (!dia){   
+                    let TotalDia = document.createElement("div")
+                    let progressbar_loja = document.createElement("div")
+                    let progressbar_valor = document.createElement("div")
+                    TotalDia.classList.add("TotalDia")
+                        progressbar_loja.classList.add("progressbarloja")
+                        progressbar_valor.classList.add("progressbarvalor")
     
+                        progressbar_loja.textContent = "Total"
+                        progressbar_valor.textContent = result.TTL
+    
+                        progressbar_valor.style.marginBottom = "30px"
+                    createbox.appendChild(TotalDia)
+                    TotalDia.appendChild(progressbar_loja)
+                    TotalDia.appendChild(progressbar_valor)
+                }else{
+                    document.querySelector(".TotalDia>.progressbarvalor").textContent = result.TTL
+                }
+            loading.remove()
+            interval  = setInterval(diaGenerator,refresh*1000)
+        })
+    } 
 }
 function statusGenerator(){
     localStorage.setItem("refreshMod", "status")
@@ -179,11 +249,10 @@ function statusGenerator(){
     let grid = document.querySelector(".grid")
     let box = grid.querySelector(".box")
     
-    const link = "https://api.fiszpan.com.br/parcial/status"
+    const link = "https://api.fiszpan.com.br/parcial/teste/status"
     if (box){
         box.remove()
         statusGenerator()
-        localStorage.setItem("refreshinfo",false)
         clearInterval(interval)
     }else{
         localStorage.setItem("refreshTime",true)

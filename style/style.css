@@ -183,3 +183,33 @@
     #expand:checked+.sidebar {
         width: 100px;
     }
+    /* Progress bar */
+    .progressbarloja{
+        margin-left: 6%;
+        float: left;
+        width: auto;
+        height: auto;
+        font-size: 22px;
+        font-weight: 700;
+    }
+    .progressbarvalor{
+        margin-right: 6%;
+        float: right;
+        font-size: 22px;
+        font-weight: 700;
+    }
+    .percent{
+        width: 90%;
+        height: 10px;
+        border-radius: 20px;
+        margin:40px 5%;
+        overflow: hidden;
+        background: #eee;
+        margin-top: 3px;
+
+    }
+    .progress{
+        background: rgb(205,128,18);
+        background: linear-gradient(90deg, rgba(205,128,18,1) 0%, rgba(184,120,41,1) 46%, rgba(201,149,14,1) 100%); 
+        height: 100%;
+    }
