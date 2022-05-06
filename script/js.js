@@ -106,7 +106,7 @@ function checkPeriodo(check,time){
     return UTNOW
 }
 async function diaGenerator(){
-    const refresh = 30
+    const refresh = 300
     
     let menuactive = document.querySelector(".menuactive")
     if (menuactive){
